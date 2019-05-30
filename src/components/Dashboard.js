@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Tabs } from "antd";
+import { Tabs, Card } from "antd";
 import Question from "./Question";
 
 const TabPane = Tabs.TabPane;
@@ -18,18 +18,6 @@ class Dashboard extends Component {
               <Question key={id} ids={id} />
             ))}
           </TabPane>
-          {/* <TabPane tab="Answered Questions" key="2">
-            {answeredQuestions.map(question => {
-              return (
-                <Question
-                  key={questions[question].id}
-                  author={questions[question].author}
-                  optionone={questions[question].optionOne}
-                  optiontwo={questions[question].optionTwo}
-                />
-              );
-            })}
-          </TabPane> */}
         </Tabs>
       </div>
     );
