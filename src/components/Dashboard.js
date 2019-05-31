@@ -8,13 +8,18 @@ const TabPane = Tabs.TabPane;
 class Dashboard extends Component {
   render() {
     console.log(this.props);
-    const { questions, unansweredQuestions, answeredQuestions } = this.props;
+    const { unansweredQuestions, answeredQuestions } = this.props;
 
     return (
       <div className="card-container">
         <Tabs defaultActiveKey="1" type="card">
           <TabPane tab="Unanswered Questions" key="1">
             {unansweredQuestions.map(id => (
+              <Question key={id} ids={id} />
+            ))}
+          </TabPane>
+          <TabPane tab="Answered Questions" key="2">
+            {answeredQuestions.map(id => (
               <Question key={id} ids={id} />
             ))}
           </TabPane>
@@ -45,7 +50,6 @@ const mapStateToProps = ({ questions, authedUser }) => {
     answeredQuestions: answered
       .sort((a, b) => b.timestamp - a.timestamp)
       .map(q => q.id),
-    questions,
     authedUser
   };
 };

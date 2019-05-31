@@ -1,7 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const ExpandedQuestion = props => {
-  return <div>This is a single question with the answers</div>;
-};
+class ExpandedQuestion extends Component {
+  render() {
+    console.log(this.props);
+    return <div>This is a single question with the answers</div>;
+  }
+}
 
-export default ExpandedQuestion;
+function mapStateToProps({ questions, users, authedUser }, props) {
+  const id = props.match.params.question_id;
+  const question = questions[id];
+  const author = question.author;
+  return {
+    questions,
+    users,
+    authedUser,
+    id,
+    question,
+    author: question.author
+    //theanswer: users[authedUser].answers[id]
+  };
+}
+
+export default connect(mapStateToProps)(ExpandedQuestion);

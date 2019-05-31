@@ -12,7 +12,6 @@ class SignIn extends Component {
     redirect: false,
     disabled: true
   };
-
   handleChange = value => {
     this.setState({ user: value, disabled: false });
   };
