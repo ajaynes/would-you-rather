@@ -1,17 +1,18 @@
 import { saveQuestionAnswer, saveQuestion } from "../utils/api";
+import { handleInitialData } from "./shared"
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_USER_ANSWER = "ADD_USER_ANSWER";
 export const ADD_QUESTION = "ADD_QUESTION";
 
-export function receiveQuestions(questions) {
+export const receiveQuestions = questions => {
   return {
     type: RECEIVE_QUESTIONS,
     questions
   };
 }
 
-function addUserAnswer(authedUser, qid, answer) {
+const addUserAnswer = (authedUser, qid, answer) => {
   return {
     type: ADD_USER_ANSWER,
     authedUser,
@@ -20,18 +21,16 @@ function addUserAnswer(authedUser, qid, answer) {
   };
 }
 
-export function handleAddUserAnswer(info) {
+export const handleAddUserAnswer = answerinfo => {
   return dispatch => {
-    dispatch(addUserAnswer(info));
-    return saveQuestionAnswer(info).catch(e => {
-      console.warn("Error in handleAddUserAnswer: ", e);
-      dispatch(addUserAnswer(info));
-      alert("The was an error adding your answer. Try again.");
-    });
-  };
+    return saveQuestionAnswer({
+      ...answerinfo
+    })
+      .then(() => dispatch(handleInitialData(answerinfo.authedUser)))
+  }
 }
 
-function addQuestion(question) {
+const addQuestion = question => {
   return {
     type: ADD_QUESTION,
     question

@@ -1,18 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card, Progress } from "antd";
+import { Card, Progress, Radio } from "antd";
+import { handleAddUserAnswer } from '../actions/questions';
 
 class ExpandedQuestion extends Component {
+  select = (e) => {
+    const answerinfo = {
+      authedUser: this.props.authedUser,
+      qid: this.props.question.id,
+      answer: e.target.value
+    }
+    this.props.dispatch(handleAddUserAnswer(answerinfo))
+  }
+
   render() {
-    console.log(this.props);
-    const { author, answer, question } = this.props;
+    const { author, answer, question, authedUser } = this.props;
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
-    const percentage =
-      100 / (optionOneVotes + optionTwoVotes);
+    const percentage = 100 / (optionOneVotes + optionTwoVotes);
     return (
+      <>
       <Card title={`${author.name} asks...`}>
         <img src={author.avatarURL} alt={author.name} />
+        {!answer ?
+          <>
+          <Radio.Group>
+          <Radio style={{ display: "block"}} value="optionOne" onClick={this.select}> { question.optionOne.text } </Radio>
+          <Radio style={{ display: "block"}} value="optionTwo" onClick={this.select}> { question.optionTwo.text } </Radio>
+          </Radio.Group>
+          </>
+            :
+          <>
         <h1>Results</h1>
           <div className={answer.text === question.optionOne.text ? 'selected' : 'not-selected'}>
             <p>Would you rather {question.optionOne.text}?</p>
@@ -24,13 +42,15 @@ class ExpandedQuestion extends Component {
             <p>{optionTwoVotes} out of {optionOneVotes + optionTwoVotes} votes</p>
             <p><Progress strokeWidth="50px" strokeLinecap="square" percent={optionTwoVotes * percentage} /></p>
           </div>
+          </>
+        }
       </Card>
+      </>
     );
   }
 }
 
-function mapStateToProps({ questions, users, authedUser }, props) {
-  const tempUser = "johndoe";
+const mapStateToProps = ({ questions, users, authedUser }, props) => {
   const id = props.match.params.question_id;
   const question = questions[id];
   const answer = question[users[authedUser].answers[id]];
