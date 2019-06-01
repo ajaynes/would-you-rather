@@ -1,4 +1,23 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+.selected {
+  padding: 15px;
+  border: 1px solid red;
+  position: relative;
+}
+
+.not-selected {
+  padding: 15px;
+}
+
+.selected .ant-progress-inner,
+.not-selected .ant-progress-inner {
+  border-radius: 0
+}
+
+.selected::before {
+  content: 'your answer';
+  position: absolute;
+  background-color: blue;
+  color: white;
+  right: 5px;
+  top: 5px;
 }

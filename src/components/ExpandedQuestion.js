@@ -1,40 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Card, Progress } from "antd";
 
 class ExpandedQuestion extends Component {
   render() {
     console.log(this.props);
     const { author, answer, question } = this.props;
+    const optionOneVotes = question.optionOne.votes.length;
+    const optionTwoVotes = question.optionTwo.votes.length;
     const percentage =
-      100 / (question.optionOne.votes.length + question.optionTwo.votes.length);
+      100 / (optionOneVotes + optionTwoVotes);
     return (
-      <>
-        <div className="author-stuff">
-          <div>
-            Author Avatar:
-            <img src={author.avatarURL} alt={author.name} />
+      <Card title={`${author.name} asks...`}>
+        <img src={author.avatarURL} alt={author.name} />
+        <h1>Results</h1>
+          <div className={answer.text === question.optionOne.text ? 'selected' : 'not-selected'}>
+            <p>Would you rather {question.optionOne.text}?</p>
+            <p>{optionOneVotes} out of {optionOneVotes + optionTwoVotes} votes</p>
+            <p><Progress strokeWidth="50px" strokeLinecap="square" percent={optionOneVotes * percentage} /></p>
           </div>
-          <div>Author: {author.name}</div>
-        </div>
-        <div className="question-details">
-          <p>Option 1 {question.optionOne.text}</p>
-          <p>option 1 votes: {question.optionOne.votes.length}</p>
-          <p>
-            option 1 percentage: {question.optionOne.votes.length * percentage}
-          </p>
-          <p>Option 2 {question.optionTwo.text}</p>
-          <p>option 2 votes: {question.optionTwo.votes.length}</p>
-          <p>
-            option 2 percentage: {question.optionTwo.votes.length * percentage}
-          </p>
-        </div>
-        <div className="user-answer">user's answer: {answer.text}</div>
-      </>
+          <div className={answer.text === question.optionTwo.text ? 'selected' : 'not-selected'}>
+            <p>Would you rather {question.optionTwo.text}?</p>
+            <p>{optionTwoVotes} out of {optionOneVotes + optionTwoVotes} votes</p>
+            <p><Progress strokeWidth="50px" strokeLinecap="square" percent={optionTwoVotes * percentage} /></p>
+          </div>
+      </Card>
     );
   }
 }
 
 function mapStateToProps({ questions, users, authedUser }, props) {
+  const tempUser = "johndoe";
   const id = props.match.params.question_id;
   const question = questions[id];
   const answer = question[users[authedUser].answers[id]];
