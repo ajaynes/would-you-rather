@@ -9,7 +9,6 @@ class Dashboard extends Component {
   render() {
     console.log(this.props);
     const { unansweredQuestions, answeredQuestions } = this.props;
-
     return (
       <div className="card-container">
         <Tabs defaultActiveKey="1" type="card">

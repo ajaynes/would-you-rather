@@ -1,6 +1,5 @@
 import { getInitialData } from "../utils/api.js";
 import { receiveUsers } from "./users";
-import { loginAuthedUser } from "./authedUser";
 import { receiveQuestions } from "./questions";
 
 export const handleInitialData = () => {

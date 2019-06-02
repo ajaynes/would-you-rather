@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
-import ExpandedQuestion from "./ExpandedQuestion";
+import Poll from "./Poll";
+import PrivateRoute from './PrivateRoute';
 
 class App extends Component {
   componentDidMount() {
@@ -16,10 +17,10 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={SignIn} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute
               path="/questions/:question_id"
-              component={ExpandedQuestion}
+              component={Poll}
             />
           </Switch>
         </BrowserRouter>
