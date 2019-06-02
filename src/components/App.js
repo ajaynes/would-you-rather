@@ -5,6 +5,8 @@ import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
 import Poll from "./Poll";
+import AddQuestion from "./AddQuestion";
+import Leaderboard from "./Leaderboard";
 import PrivateRoute from './PrivateRoute';
 
 class App extends Component {
@@ -22,6 +24,8 @@ class App extends Component {
               path="/questions/:question_id"
               component={Poll}
             />
+          <PrivateRoute path="/new-question" component={AddQuestion} />
+          <PrivateRoute path="/leaderboard" component={Leaderboard} />
           </Switch>
         </BrowserRouter>
       </div>

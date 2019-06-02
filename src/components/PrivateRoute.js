@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import SignIn from './SignIn';
 
 const PrivateRoute = ({component: Component, ...props}) => {
 	const isUserAuthed = () => {
