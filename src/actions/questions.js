@@ -36,3 +36,18 @@ const addQuestion = question => {
     question
   };
 }
+
+export const handleAddQuestion = (optionOneText, optionTwoText, author) => {
+  return (dispatch,  getState) => {
+    const { authedUser } = getState()
+    return saveQuestion({
+      optionOneText,
+      optionTwoText,
+      author: authedUser
+    })
+      .then(() => {
+        dispatch(addQuestion(optionOneText, optionTwoText, author))
+        dispatch(handleInitialData())
+      })
+  }
+}
