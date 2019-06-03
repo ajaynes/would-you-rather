@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Select, Form, Button } from "antd";
+import { Select, Form, Button, Card } from "antd";
 import { loginAuthedUser } from "../actions/authedUser";
 
 const Option = Select.Option;
@@ -27,24 +27,27 @@ class SignIn extends Component {
       return <Redirect to="/dashboard" />;
     }
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Select onChange={this.handleChange}>
-          {Object.values(users).map(user => (
-            <Option key={user.id} value={user.id}>
-              {user.name}
-            </Option>
-          ))}
-        </Select>
+      <Card style={{ backgroundColor: "#001529" }}>
+        <h1 style={{ textAlign: "center", color: "white" }}>Would you rather?</h1>
+        <Form onSubmit={this.handleSubmit}>
+          <Select onChange={this.handleChange} defaultValue="Select a user to sign in" style={{ marginBottom: 25 }}>
+            {Object.values(users).map(user => (
+              <Option key={user.id} value={user.id}>
+                {user.name}
+              </Option>
+            ))}
+          </Select>
 
-        <Button
-          type="primary"
-          htmlType="submit"
-          block
-          disabled={this.state.disabled}
-        >
-          Sign In
+          <Button
+            type="primary"
+            htmlType="submit"
+            block
+            disabled={this.state.disabled}
+          >
+            Sign In
         </Button>
-      </Form>
+        </Form>
+      </Card>
     );
   }
 }

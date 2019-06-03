@@ -1,23 +1,38 @@
 .selected {
-  padding: 15px;
-  border: 1px solid red;
+  padding: 8px 15px;
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
   position: relative;
 }
 
 .not-selected {
-  padding: 15px;
+  padding: 8px 15px;
 }
 
 .selected .ant-progress-inner,
 .not-selected .ant-progress-inner {
-  border-radius: 0
+  border-radius: 0;
+  border: 1px solid#c1c1c1;
 }
 
-.selected::before {
-  content: 'your answer';
-  position: absolute;
-  background-color: blue;
-  color: white;
-  right: 5px;
-  top: 5px;
+.ant-menu-dark .ant-menu-item-disabled {
+  color: rgba(255, 255, 255, 0.65) !important;
+  cursor: auto;
+  opacity: 1;
+}
+
+.ant-tabs-card-content {
+  border-bottom: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  padding: 10px;
+}
+
+.ant-tabs-bar {
+  margin: 16px 0 0;
+}
+
+.ant-progress-text {
+  display: block;
+  margin-top: 15px;
 }

@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Tabs, Card } from "antd";
 import Question from "./Question";
-import Nav from "./Nav";
 
 const TabPane = Tabs.TabPane;
 
 class Dashboard extends Component {
   render() {
-    //console.log(this.props);
     const { unansweredQuestions, answeredQuestions } = this.props;
     return (
       <>
-        <Nav />
         <div className="card-container">
           <Tabs defaultActiveKey="1" type="card">
             <TabPane tab="Unanswered Questions" key="1">

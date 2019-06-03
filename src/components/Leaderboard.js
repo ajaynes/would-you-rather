@@ -1,40 +1,44 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import Nav from "./Nav";
+import { Card, Avatar, Col, Row } from "antd";
+
+const { Meta } = Card;
 
 class Leaderboard extends Component {
   render() {
     const { userOrder } = this.props;
     return (
       <div>
-      <Nav />
         {userOrder.map(user => {
           return (
-            <div key={user.id}>
-              <img src={user.avatar} alt={user.name} />
-              <p>{user.name}</p>
-              <p>total score: {user.name}</p>
-              <p>asked: {user.asked}</p>
-              <p>answered: {user.answer}</p>
-            </div>)
+            <Card key={user.id} style={{ margin: "5px 0" }}>
+              <Row>
+                <Col span={8} style={{ textAlign: "center" }}>
+                  <Avatar src={user.avatar} size={85} style={{ border: "3px solid #1890ff" }} />
+                </Col>
+                <Col span={16}>
+                  <Meta title={user.name} description={`Total: ${user.total},  Asked: ${user.asked},  Answered: ${user.answer}`} />
+                </Col>
+              </Row>
+            </Card>)
         })}
-       </div>
+      </div>
     )
   }
 }
 
-function mapStateToProps ({ users }) {
+const mapStateToProps = ({ users }) => {
   const userOrder = Object.keys(users).map(id => ({
     id,
     asked: users[id].questions.length,
     answer: Object.keys(users[id].answers).length,
-    total: users[id].questions.length +  Object.keys(users[id].answers).length,
+    total: users[id].questions.length + Object.keys(users[id].answers).length,
     name: users[id].name,
     avatar: users[id].avatarURL
-  })).sort((a, b) =>  b.total - a.total)
+  })).sort((a, b) => b.total - a.total)
   return {
     userOrder
   }
 }
 
-export default connect (mapStateToProps)(Leaderboard);
+export default connect(mapStateToProps)(Leaderboard);

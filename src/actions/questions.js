@@ -38,7 +38,7 @@ const addQuestion = question => {
 }
 
 export const handleAddQuestion = (optionOneText, optionTwoText, author) => {
-  return (dispatch,  getState) => {
+  return (dispatch, getState) => {
     const { authedUser } = getState()
     return saveQuestion({
       optionOneText,
