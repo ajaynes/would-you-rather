@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card, Progress, Radio } from "antd";
 import { handleAddUserAnswer } from '../actions/questions';
+import Nav from "./Nav";
 
 class Poll extends Component {
   select = (e) => {
@@ -19,6 +20,7 @@ class Poll extends Component {
     const percentage = 100 / (optionOneVotes + optionTwoVotes);
     return (
       <>
+      <Nav />
       <Card title={`${author.name} asks...`}>
         <img src={author.avatarURL} alt={author.name} />
         {!answer ?

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
@@ -16,25 +16,28 @@ class App extends Component {
   render() {
     return (
       <div style={{ margin: 20 }}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={SignIn} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            <PrivateRoute
-              path="/questions/:question_id"
-              component={Poll}
-            />
-          <PrivateRoute path="/new-question" component={AddQuestion} />
-          <PrivateRoute path="/leaderboard" component={Leaderboard} />
-          </Switch>
-        </BrowserRouter>
+      <Router>
+        <>
+          {this.props.loading === true
+            ? null
+            : <div>
+              <Route exact path="/" component={SignIn} />
+                <PrivateRoute path="/dashboard" component={Dashboard} />
+                <PrivateRoute path="/questions/:question_id" component={Poll} />
+                <PrivateRoute path="/new-question" component={AddQuestion} />
+                <PrivateRoute path="/leaderboard" component={Leaderboard} />
+            </div>}
+          </>
+        </Router>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return { state };
-};
+function mapStateToProps({ loadingBar }) {
+  return {
+    loading: loadingBar > 0
+  }
+}
 
 export default connect(mapStateToProps)(App);
