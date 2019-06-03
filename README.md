@@ -11,19 +11,30 @@ To get started developing right away:
 
 
 * Signin
- * ![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/login.png "Signin")
+
+![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/login.png "Signin")
+
 
 * View questions
- * ![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/dashboard.png "Dashboard")
+
+![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/dashboard.png "Dashboard")
+
 
 * View answers
- * ![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/answerpoll.png "Answers")
+
+![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/answerpoll.png "Answers")
+
 
 * Answer questions
- * ![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/answerpoll.png "Answer Questions")
+
+![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/answerpoll.png "Answer Questions")
+
 
 * Add questions
- * ![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/addquestion.png "Add Question")
+
+![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/addquestion.png "Add Question")
+
 
 * View Leaderboard
- * ![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/leaderboard.png "Leaderboard")
+
+![alt text](https://github.com/ajaynes/would-you-rather/blob/master/src/screenshots/leaderboard.png "Leaderboard")
