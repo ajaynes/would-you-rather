@@ -19,7 +19,7 @@ class Nav extends Component {
           <img src={user.avatarURL} alt={user.name} />
         </div>
         <Link to="/dashboard">Home</Link>
-        <Link to="/new-question">Add a Question</Link>
+        <Link to="/add">Add a Question</Link>
         <Link to="/leaderboard">Leaderboard</Link>
         <Link to="/" onClick={this.handleLogout}>Sign Out</Link>
       </nav>

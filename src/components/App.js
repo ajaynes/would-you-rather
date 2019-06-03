@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
@@ -24,7 +24,7 @@ class App extends Component {
               <Route exact path="/" component={SignIn} />
                 <PrivateRoute path="/dashboard" component={Dashboard} />
                 <PrivateRoute path="/questions/:question_id" component={Poll} />
-                <PrivateRoute path="/new-question" component={AddQuestion} />
+                <PrivateRoute path="/add" component={AddQuestion} />
                 <PrivateRoute path="/leaderboard" component={Leaderboard} />
             </div>}
           </>
