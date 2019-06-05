@@ -18,9 +18,6 @@ class Poll extends Component {
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
     const percentage = 100 / (optionOneVotes + optionTwoVotes);
-    if (!question) {
-      return <p>404: Question not found</p>
-    }
     return (
       <>
         <Card title={`${author.name} asks...`} style={{ marginTop: 15 }}>
@@ -50,30 +47,30 @@ class Poll extends Component {
                   </div>
                   <Button type="primary"><Link to="/dashboard">Go Back</Link></Button>
                 </>
-                }
+              }
             </Col>
           </Row>
         </Card>
       </>
-          );
-        }
-      }
-      
-const mapStateToProps = ({questions, users, authedUser }, props) => {
+    );
+  }
+}
+
+const mapStateToProps = ({ questions, users, authedUser }, props) => {
   const id = props.match.params.question_id;
-          const question = questions[id];
-          const answer = question[users[authedUser].answers[id]];
-          const author = users[question.author];
-        
+  const question = questions[id];
+  const answer = question[users[authedUser].answers[id]];
+  const author = users[question.author];
+
   return {
-            questions,
-          users,
-          authedUser,
-          id,
-          question,
-          author,
-          answer
-        };
-      }
-      
-      export default connect(mapStateToProps)(Poll);
+    questions,
+    users,
+    authedUser,
+    id,
+    question,
+    author,
+    answer
+  };
+}
+
+export default connect(mapStateToProps)(Poll);

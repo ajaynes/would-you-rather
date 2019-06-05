@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Select, Form, Button, Card } from "antd";
 import { loginAuthedUser } from "../actions/authedUser";
 
@@ -22,10 +22,19 @@ class SignIn extends Component {
     this.props.dispatch(loginAuthedUser(this.state.user));
   };
   render() {
-    const { users } = this.props;
+    if (this.props.history.action === "REPLACE" && this.state.redirect === true) {
+      return (
+        <div>
+          <h1>That Question was Not Found</h1>
+          <Button type="primary"><Link to="/dashboard">Return to your dashboard</Link></Button>
+        </div>
+      )
+    }
     if (this.state.redirect === true) {
       return <Redirect to="/dashboard" />;
     }
+
+    const {users} = this.props;
     return (
       <Card style={{ backgroundColor: "#001529" }}>
         <h1 style={{ textAlign: "center", color: "white" }}>Would you rather?</h1>
