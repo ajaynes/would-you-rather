@@ -21,20 +21,26 @@ class SignIn extends Component {
     this.setState({ redirect: true });
     this.props.dispatch(loginAuthedUser(this.state.user));
   };
+
   render() {
-    if (this.props.history.action === "REPLACE" && this.state.redirect === true) {
-      return (
-        <div>
-          <h1>That Question was Not Found</h1>
-          <Button type="primary"><Link to="/dashboard">Return to your dashboard</Link></Button>
-        </div>
-      )
+
+    /* if the property state is undefined in location is undefined, set it to an empty string to avoid errors */
+    let redirectpath;
+    try {
+      redirectpath = this.props.location.state.from.pathname;
+    } catch (error) {
+      redirectpath = '';
+    };
+
+    if (redirectpath.includes("/questions") && this.state.redirect === true) {
+      return <Redirect to="/404" />
     }
+
     if (this.state.redirect === true) {
       return <Redirect to="/dashboard" />;
     }
 
-    const {users} = this.props;
+    const { users } = this.props;
     return (
       <Card style={{ backgroundColor: "#001529" }}>
         <h1 style={{ textAlign: "center", color: "white" }}>Would you rather?</h1>

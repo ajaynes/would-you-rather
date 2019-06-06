@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import { Row, Col } from 'antd';
 import SignIn from "./SignIn";
@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard";
 import Poll from "./Poll";
 import AddQuestion from "./AddQuestion";
 import Leaderboard from "./Leaderboard";
+import NotFound from "./NotFound";
 import PrivateRoute from './PrivateRoute';
 import Nav from "./Nav";
 
@@ -18,20 +19,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {this.props.authedUser === null ? <div>&nbsp;</div> : <Nav />}
-        <Row type="flex" justify="center">
-          <Col span={6}>
-            <Route exact path="/" component={SignIn} />
-          </Col>
-        </Row>
-        <Row type="flex" justify="center">
-          <Col span={8}>
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            <PrivateRoute path="/questions/:question_id" component={Poll} />
-            <PrivateRoute path="/add" component={AddQuestion} />
-            <PrivateRoute path="/leaderboard" component={Leaderboard} />
-          </Col>
-        </Row>
+        {/* {this.props.authedUser === null ? <div>&nbsp;</div> : <Nav />} */}
+        <Switch>
+          <Route exact path="/" component={SignIn} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/questions/:question_id" component={Poll} />
+          <PrivateRoute exact path="/add" component={AddQuestion} />
+          <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
+          <PrivateRoute exact path="/NotFound" component={NotFound} />
+          <Route component={NotFound} />
+        </Switch>
       </Router >
     );
   }
