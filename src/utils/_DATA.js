@@ -3,7 +3,7 @@ let users = {
     id: "sarahedo",
     name: "Sarah Edo",
     avatarURL:
-      "https://ashleyjaynes.com/wp-content/uploads/2019/05/Witch-icon.png",
+      "https://ashleyjaynes.com/tempfiles/Witch-icon.png",
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
       "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -16,7 +16,7 @@ let users = {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
     avatarURL:
-      "https://ashleyjaynes.com/wp-content/uploads/2019/05/Leprechaun-icon.png",
+      "https://ashleyjaynes.com/tempfiles/Leprechaun-icon.png",
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo"
@@ -27,7 +27,7 @@ let users = {
     id: "johndoe",
     name: "John Doe",
     avatarURL:
-      "https://ashleyjaynes.com/wp-content/uploads/2019/05/Boxer-icon.png",
+      "https://ashleyjaynes.com/tempfiles/Boxer-icon.png",
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",
