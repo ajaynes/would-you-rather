@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL}>
-        {/* {this.props.authedUser === null ? <div>&nbsp;</div> : <Nav />} */}
+        {this.props.authedUser === null ? <div>&nbsp;</div> : <Nav />}
         <Switch>
           <Route exact path="/" component={SignIn} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
