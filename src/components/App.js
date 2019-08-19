@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
-import { Row, Col } from 'antd';
+import { Row, Col } from "antd";
 import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
 import Poll from "./Poll";
 import AddQuestion from "./AddQuestion";
 import Leaderboard from "./Leaderboard";
 import NotFound from "./NotFound";
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from "./PrivateRoute";
 import Nav from "./Nav";
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         {/* {this.props.authedUser === null ? <div>&nbsp;</div> : <Nav />} */}
         <Switch>
           <Route exact path="/" component={SignIn} />
@@ -29,7 +29,7 @@ class App extends Component {
           <PrivateRoute exact path="/NotFound" component={NotFound} />
           <Route component={NotFound} />
         </Switch>
-      </Router >
+      </Router>
     );
   }
 }
@@ -37,7 +37,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     authedUser: state.authedUser
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(App);

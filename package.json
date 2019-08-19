@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": "/wouldyourather",
   "dependencies": {
     "antd": "3.19.1",
     "react": "16.8.6",
