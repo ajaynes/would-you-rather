@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Tabs, Card } from "antd";
+import { Tabs, Card, Col, Row } from "antd";
 import Question from "./Question";
 
 const TabPane = Tabs.TabPane;
@@ -9,22 +9,24 @@ class Dashboard extends Component {
   render() {
     const { unansweredQuestions, answeredQuestions } = this.props;
     return (
-      <>
-        <div className="card-container">
-          <Tabs defaultActiveKey="1" type="card">
-            <TabPane tab="Unanswered Questions" key="1">
-              {unansweredQuestions.map(id => (
-                <Question key={id} ids={id} />
-              ))}
-            </TabPane>
-            <TabPane tab="Answered Questions" key="2">
-              {answeredQuestions.map(id => (
-                <Question key={id} ids={id} />
-              ))}
-            </TabPane>
-          </Tabs>
-        </div>
-      </>
+      <Row type="flex" justify="center">
+        <Col span={10}>
+          <div className="card-container">
+            <Tabs defaultActiveKey="1" type="card">
+              <TabPane tab="Unanswered Questions" key="1">
+                {unansweredQuestions.map(id => (
+                  <Question key={id} ids={id} />
+                ))}
+              </TabPane>
+              <TabPane tab="Answered Questions" key="2">
+                {answeredQuestions.map(id => (
+                  <Question key={id} ids={id} />
+                ))}
+              </TabPane>
+            </Tabs>
+          </div>
+        </Col>
+      </Row>
     );
   }
 }

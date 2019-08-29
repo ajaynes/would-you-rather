@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { Select, Form, Button, Card } from "antd";
+import { Select, Form, Button, Card, Row, Col } from "antd";
 import { loginAuthedUser } from "../actions/authedUser";
 
 const Option = Select.Option;
@@ -23,17 +23,16 @@ class SignIn extends Component {
   };
 
   render() {
-
     /* if the property state is undefined in location is undefined, set it to an empty string to avoid errors */
     let redirectpath;
     try {
       redirectpath = this.props.location.state.from.pathname;
     } catch (error) {
-      redirectpath = '';
-    };
+      redirectpath = "";
+    }
 
     if (redirectpath.includes("/questions") && this.state.redirect === true) {
-      return <Redirect to="/404" />
+      return <Redirect to="/404" />;
     }
 
     if (this.state.redirect === true) {
@@ -42,27 +41,37 @@ class SignIn extends Component {
 
     const { users } = this.props;
     return (
-      <Card style={{ backgroundColor: "#001529" }}>
-        <h1 style={{ textAlign: "center", color: "white" }}>Would you rather?</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Select onChange={this.handleChange} defaultValue="Select a user to sign in" style={{ marginBottom: 25 }}>
-            {Object.values(users).map(user => (
-              <Option key={user.id} value={user.id}>
-                {user.name}
-              </Option>
-            ))}
-          </Select>
+      <Row type="flex" justify="center">
+        <Col span={6}>
+          <Card style={{ backgroundColor: "#001529" }}>
+            <h1 style={{ textAlign: "center", color: "white" }}>
+              Would you rather?
+            </h1>
+            <Form onSubmit={this.handleSubmit}>
+              <Select
+                onChange={this.handleChange}
+                defaultValue="Select a user to sign in"
+                style={{ marginBottom: 25 }}
+              >
+                {Object.values(users).map(user => (
+                  <Option key={user.id} value={user.id}>
+                    {user.name}
+                  </Option>
+                ))}
+              </Select>
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            block
-            disabled={this.state.disabled}
-          >
-            Sign In
-        </Button>
-        </Form>
-      </Card>
+              <Button
+                type="primary"
+                htmlType="submit"
+                block
+                disabled={this.state.disabled}
+              >
+                Sign In
+              </Button>
+            </Form>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }
